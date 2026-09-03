@@ -97,6 +97,56 @@ body {
   font-weight: 600;
 }
 
+
+/* Task Dashboard */
+.task-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.task-header h3 {
+  margin: 0;
+  font-size: 18px;
+  flex: 1;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.view-btn {
+  background: transparent;
+  color: #4a90d9;
+  border: 1px solid #4a90d9;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.view-btn:hover {
+  background: #4a90d9;
+  color: #ffffff;
+}
+
+/* Loading state */
+.loading {
+  text-align: center;
+  padding: 40px 0;
+  color: #666;
+}
+
+
 /* Mobile */
 
 @media (max-width: 600px) {
