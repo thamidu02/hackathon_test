@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Note from "../models/Note.js";
 
 export const createNote = async (req, res) => {
@@ -78,5 +79,44 @@ export const updateNote = async (req, res) => {
       message: "Failed to update note",
       error: error.message,
     });
+  }
+};
+
+export const togglePin = async (req, res) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(400).json({ message: "Invalid note ID" });
+    }
+
+    const note = await Note.findById(req.params.id);
+
+    if (!note) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
+    note.isPinned = !note.isPinned;
+    await note.save();
+
+    res.status(200).json(note);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to toggle note pin" });
+  }
+};
+
+export const deleteNote = async (req, res) => {
+  try {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return res.status(400).json({ message: "Invalid note ID" });
+    }
+
+    const note = await Note.findByIdAndDelete(req.params.id);
+
+    if (!note) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
+    res.status(200).json({ message: "Note deleted", note });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to delete note" });
   }
 };
