@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
+import TaskDashboard from "./components/TaskDashboard";
 import "./App.css";
 
 function Home() {
@@ -26,6 +27,16 @@ function Home() {
               View Notes
             </button>
           </section>
+              
+          <section className="card dashboard-card">
+              <div className="card-icon">✅</div>
+              <h2>Tasks</h2>
+              <p>Keep track of your tasks and deadlines.</p>
+              <button className="btn-primary" onClick={() => navigate("/tasks")}>
+                View Tasks
+              </button>
+            </section>
+
         </main>
       </div>
     </div>
@@ -142,6 +153,31 @@ function Notes() {
     </div>
   );
 }
+// TASKS COMPONENT - UPDATED
+function Tasks() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="app">
+      <div className="container">
+        <header className="header">
+          <div>
+            <button className="back-btn" onClick={() => navigate("/")}>
+              ← Back
+            </button>
+            <h1>My Tasks</h1>
+            <p>Keep track of your tasks and deadlines.</p>
+          </div>
+        </header>
+
+        <main>
+          <TaskDashboard /> {/* Make sure this is rendering */}
+        </main>
+      </div>
+    </div>
+  );
+}
+
 
 function App() {
   return (
@@ -149,6 +185,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/notes" element={<Notes />} />
+        <Route path="/tasks" element={<Tasks />} />
       </Routes>
     </BrowserRouter>
   );
