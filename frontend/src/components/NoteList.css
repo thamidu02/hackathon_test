@@ -1,0 +1,98 @@
+.note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.note {
+  background: #111;
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.note-content h3 {
+  margin: 0 0 10px;
+  font-size: 19px;
+}
+
+.note-content p {
+  margin: 0 0 15px;
+  color: #c7c7c7;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.note-content small {
+  color: #777;
+}
+
+.note-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.note-actions button {
+  padding: 8px 15px;
+  border: 1px solid #444;
+  border-radius: 8px;
+
+  background: #fff;
+  color: #000;
+
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.note-actions button:hover {
+  background: #ddd;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 12px;
+
+  background: #1a1a1a;
+  color: #fff;
+
+  border: 1px solid #444;
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  outline: none;
+}
+
+.edit-form input:focus,
+.edit-form textarea:focus {
+  border-color: #fff;
+}
+
+.edit-form textarea {
+  resize: vertical;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+}
+
+.empty-state p {
+  margin: 0 0 5px;
+  color: #fff;
+  font-size: 17px;
+}
+
+.empty-state span {
+  font-size: 14px;
+}

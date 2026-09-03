@@ -5,8 +5,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0d0d0d;
-  color: #f5f5f5;
+  background: #0f0f0f;
+  color: #ffffff;
 }
 
 .app {
@@ -20,112 +20,85 @@ body {
 }
 
 /* Header */
+
 .header {
-  background: #151515;
-  border: 1px solid #292929;
-  padding: 35px;
-  border-radius: 18px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 30px;
+  border-radius: 16px;
   margin-bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 36px;
-  font-weight: 600;
-  letter-spacing: -1px;
+  font-size: 32px;
 }
 
 .header p {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: #999;
   font-size: 15px;
 }
 
+.note-count {
+  background: #ffffff;
+  color: #000000;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 /* Cards */
-.card {
-  background: #151515;
-  border: 1px solid #292929;
-  padding: 28px;
-  border-radius: 18px;
+
+.card,
+.notes-section {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 25px;
+  border-radius: 16px;
   margin-bottom: 25px;
 }
 
-.card h2 {
-  margin: 0 0 22px;
-  font-size: 20px;
-  font-weight: 500;
-  color: #fff;
-}
-
-/* Inputs */
-input,
-textarea {
-  width: 100%;
-  background: #0d0d0d;
-  color: #fff;
-  border: 1px solid #333;
-  border-radius: 10px;
-  padding: 13px 15px;
-  font-size: 15px;
-  outline: none;
-  transition: border-color 0.2s ease;
-}
-
-input:focus,
-textarea:focus {
-  border-color: #777;
-}
-
-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* Buttons */
-button {
-  background: #fff;
-  color: #000;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-button:hover {
-  background: #dcdcdc;
-  transform: translateY(-1px);
-}
-
-/* Notes */
-.note {
-  background: #0f0f0f;
-  border: 1px solid #292929;
-  border-radius: 14px;
-  padding: 20px;
-  margin-bottom: 15px;
-  transition: border-color 0.2s ease;
-}
-
-.note:hover {
-  border-color: #444;
-}
-
-.note h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
-  color: #fff;
-}
-
-.note p {
+.card h2,
+.notes-section h2 {
   margin: 0;
-  color: #aaa;
-  line-height: 1.6;
+  font-size: 21px;
 }
 
-/* Small screens */
+/* Notes header */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.section-header span {
+  background: #ffffff;
+  color: #000000;
+
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Mobile */
+
 @media (max-width: 600px) {
   .app {
     padding: 25px 15px;
@@ -133,14 +106,12 @@ button:hover {
 
   .header {
     padding: 25px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
   }
 
   .header h1 {
-    font-size: 30px;
-  }
-
-  .card {
-    padding: 20px;
+    font-size: 28px;
   }
 }
-
