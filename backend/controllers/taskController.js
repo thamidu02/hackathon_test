@@ -19,6 +19,18 @@ export const createTask = async (req, res) => {
   }
 };
 
+export const getTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find().sort({ createdAt: -1 });
+
+    res.status(200).json(tasks);
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch tasks",
+      error: error.message,
+    });
+  }
+};
 
 export const getTaskById = async (req, res) => {
   try {
@@ -34,28 +46,6 @@ export const getTaskById = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Error fetching task",
-      error: error.message,
-    });
-  }
-};
-
-
-export const deleteTask = async (req, res) => {
-  try {
-    const task = await Task.findByIdAndDelete(req.params.id);
-
-    if (!task) {
-      return res.status(404).json({
-        message: "Task not found",
-      });
-    }
-
-    res.status(200).json({
-      message: "Task deleted successfully",
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Failed to delete task",
       error: error.message,
     });
   }
