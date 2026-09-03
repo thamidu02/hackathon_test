@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./NoteList.css";
 
-function NoteList({ notes, setNotes }) {
+function NoteList({ notes, setNotes, onTogglePin, onDelete }) {
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editContent, setEditContent] = useState("");
@@ -102,8 +102,24 @@ function NoteList({ notes, setNotes }) {
               </div>
 
               <div className="note-actions">
-                <button onClick={() => startEditing(note)}>
+                <button type="button" onClick={() => startEditing(note)}>
                   Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onTogglePin(note._id)}
+                >
+                  {note.isPinned ? "Unpin" : "Pin"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm("Are you sure you want to delete this note?")) {
+                      onDelete(note._id);
+                    }
+                  }}
+                >
+                  Delete
                 </button>
               </div>
             </>
