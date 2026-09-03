@@ -19,14 +19,14 @@ export const createTask = async (req, res) => {
   }
 };
 
-// GET TASK BY ID
+
 export const getTaskById = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
 
     if (!task) {
       return res.status(404).json({
-        message: "Task not found"
+        message: "Task not found",
       });
     }
 
@@ -34,7 +34,12 @@ export const getTaskById = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Error fetching task",
-      error: error.message
+      error: error.message,
+    });
+  }
+};
+
+
 export const deleteTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);
