@@ -62,7 +62,7 @@ export const updateNote = async (req, res) => {
   }
 };
 
-export const getNoteById = async (req, res) => {
+export const getNotesById = async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
 
