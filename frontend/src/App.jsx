@@ -34,6 +34,7 @@ function Home() {
 
 function Notes() {
   const [notes, setNotes] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -47,13 +48,58 @@ function Notes() {
         const data = await response.json();
 
         setNotes(data);
+        setError("");
       } catch (error) {
         console.error("Failed to fetch notes:", error);
+        setError("Unable to load notes. Please check that the backend is running.");
       }
     };
 
     fetchNotes();
   }, []);
+
+  const togglePin = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/notes/${id}/pin`,
+        { method: "PATCH" }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to toggle note pin");
+      }
+
+      const updatedNote = await response.json();
+      setNotes((previousNotes) =>
+        previousNotes.map((note) => (note._id === id ? updatedNote : note))
+      );
+      setError("");
+    } catch (error) {
+      console.error("Failed to toggle note pin:", error);
+      setError("Unable to update the note. Please try again.");
+    }
+  };
+
+  const deleteNote = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/notes/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete note");
+      }
+
+      await response.json();
+      setNotes((previousNotes) =>
+        previousNotes.filter((note) => note._id !== id)
+      );
+      setError("");
+    } catch (error) {
+      console.error("Failed to delete note:", error);
+      setError("Unable to delete the note. Please try again.");
+    }
+  };
 
   return (
     <div className="app">
@@ -82,7 +128,13 @@ function Notes() {
               <span>{notes.length}</span>
             </div>
 
-            <NoteList notes={notes} setNotes={setNotes} />
+            {error && <p className="error-message">{error}</p>}
+            <NoteList
+              notes={notes}
+              setNotes={setNotes}
+              onTogglePin={togglePin}
+              onDelete={deleteNote}
+            />
           </section>
         </main>
 
