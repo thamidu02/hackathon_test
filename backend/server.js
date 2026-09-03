@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import noteRoutes from "./routes/noteRoutes.js";
+import taskRoutes from "./routes/taskRoutes.js"
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/notes", noteRoutes);
+app.use("/api/tasks",taskRoutes)
 
 mongoose
   .connect(process.env.MONGO_URI)
