@@ -1,9 +1,38 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
 import "./App.css";
 
-function App() {
+function Home() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="app">
+      <div className="container">
+        <header className="header">
+          <div>
+            <h1>KOTHTHU GUYS</h1>
+            <p>Simple Notes Management Application</p>
+          </div>
+        </header>
+
+        <main>
+          <section className="card">
+            <h2>Welcome</h2>
+            <p>Manage your notes easily in one place.</p>
+
+            <button onClick={() => navigate("/notes")}>
+              View Notes
+            </button>
+          </section>
+        </main>
+      </div>
+    </div>
+  );
+}
+
+function Notes() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
@@ -44,14 +73,12 @@ function App() {
         <main>
           <section className="card">
             <h2>Add a Note</h2>
-
             <NoteForm setNotes={setNotes} />
           </section>
 
           <section className="notes-section">
             <div className="section-header">
               <h2>All Notes</h2>
-
               <span>{notes.length}</span>
             </div>
 
@@ -61,6 +88,17 @@ function App() {
 
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/notes" element={<Notes />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
